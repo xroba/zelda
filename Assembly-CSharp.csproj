@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Character\Character.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterBaseController.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterInteractionModel.cs" />
+     <Compile Include="Assets\Scripts\Character\CharacterInventoryModel.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterKeyboardController.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterMovementModel.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterMovementView.cs" />
@@ -56,6 +57,7 @@
      <Compile Include="Assets\Scripts\Objects\InteractableBase.cs" />
      <Compile Include="Assets\Scripts\Objects\InteractableChest.cs" />
      <Compile Include="Assets\Scripts\Objects\InteractableSign.cs" />
+     <Compile Include="Assets\Scripts\Objects\ItemType.cs" />
      <Compile Include="Assets\testinteract.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

@@ -13,11 +13,18 @@ public class InteractableSign : InteractableBase {
 			character.Movement.setIsFrozen(false);
 			DialogBox.Hide ();
 		} else {
-			Time.timeScale = 0;
+
+
+
 			character.Movement.setIsFrozen(true);
+			StartCoroutine(FreezeTimeRoutine()) ;
+
 			DialogBox.Show (m_text);
 		}
+	}
 
-
+	IEnumerator FreezeTimeRoutine(){
+		yield return null;
+		Time.timeScale = 0;
 	}
 }

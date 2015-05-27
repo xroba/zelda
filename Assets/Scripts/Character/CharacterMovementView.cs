@@ -17,20 +17,22 @@ public class CharacterMovementView : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		UpdateDirection ();
+	}
+
+	public void UpdateDirection(){
 
 		if (m_characterMovementModel == null) {
 			return;
 		}
-	
+		
 		Vector3 direction = m_characterMovementModel.getDirection ();
-
+		
 		if (direction != Vector3.zero) {
 			animator.SetFloat ("directionX", direction.x);
 			animator.SetFloat ("directionY", direction.y);
 		}
-
+		
 		animator.SetBool ("isMoving", m_characterMovementModel.IsMoving());
-
-
 	}
 }

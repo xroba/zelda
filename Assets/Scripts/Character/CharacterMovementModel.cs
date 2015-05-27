@@ -65,9 +65,9 @@ public class CharacterMovementModel : MonoBehaviour {
 
 	public bool IsMoving(){
 
-		/*if (m_MovementDirection == Vector3.zero) {
+		if (m_frozen == true) {
 			return false;
-		}*/
+		}
 
 		return m_MovementDirection != Vector3.zero;
 	}
