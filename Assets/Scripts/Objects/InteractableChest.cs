@@ -5,15 +5,19 @@ public class InteractableChest : InteractableBase {
 
 	public Sprite openChestSprite;
 	private bool m_isOpen = false;
+	private SpriteRenderer m_renderer;
 
-	public override void onInteract(){
+	void Awake(){
+		m_renderer = GetComponentInChildren<SpriteRenderer> ();
+	}
+
+	public override void onInteract(Character character){
 
 		if (m_isOpen == true) {
 			return;
 		}
 
-		Debug.Log ("I m chest");
-		GetComponentInChildren<SpriteRenderer> ().sprite = openChestSprite;
+		m_renderer.sprite = openChestSprite;
 		m_isOpen = true;
 	}
 }

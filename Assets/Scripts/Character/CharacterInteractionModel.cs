@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(Character))]
 public class CharacterInteractionModel : MonoBehaviour {
 
 	CharacterMovementModel m_MovementModel;
 	InteractableBase usableInteractable;
+	Character character;
 
 
 	void Awake(){
 		m_MovementModel = GetComponent<CharacterMovementModel> ();
+		character = GetComponent<Character> ();
 	}
 	
 
@@ -20,7 +23,7 @@ public class CharacterInteractionModel : MonoBehaviour {
 			return;
 		}
 
-		usableInteractable.onInteract ();
+		usableInteractable.onInteract (character);
 
 	}
 

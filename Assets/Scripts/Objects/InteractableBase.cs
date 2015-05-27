@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class InteractableBase : MonoBehaviour {
 
 	// Use this for initialization
@@ -13,7 +14,7 @@ public class InteractableBase : MonoBehaviour {
 	
 	}
 
-	public virtual void onInteract(){
+	public virtual void onInteract(Character character){
 		Debug.Log ("I interact");
 	}
 }

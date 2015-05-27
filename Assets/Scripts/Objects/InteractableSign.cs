@@ -6,26 +6,18 @@ public class InteractableSign : InteractableBase {
 
 	public string m_text;
 
-	public override void onInteract(){
+	public override void onInteract(Character character){
 
 		if (DialogBox.isVisible()) {
+			Time.timeScale = 1;
+			character.Movement.setIsFrozen(false);
 			DialogBox.Hide ();
 		} else {
+			Time.timeScale = 0;
+			character.Movement.setIsFrozen(true);
 			DialogBox.Show (m_text);
 		}
 
 
 	}
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-
 }

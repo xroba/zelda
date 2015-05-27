@@ -7,6 +7,7 @@ public class CharacterMovementModel : MonoBehaviour {
 	public Vector3 m_MovementDirection;
 	public Vector3 m_MovementFacing;
 	public Rigidbody2D m_Rb2d;
+	private bool m_frozen;
 
 	void Awake()
 	{
@@ -30,6 +31,9 @@ public class CharacterMovementModel : MonoBehaviour {
 
 	public void SetDirection(Vector2 Direction)
 	{
+		if( m_frozen == true){
+			return;
+		}
 		m_MovementDirection = new Vector3 (Direction.x, Direction.y, 0);
 
 		if (Direction != Vector2.zero) {
@@ -47,6 +51,12 @@ public class CharacterMovementModel : MonoBehaviour {
 
 	public void UpdateDirection(){
 
+		if (m_frozen == true) {
+			m_Rb2d.velocity = Vector3.zero;
+			return;
+
+		}
+
 		if (m_MovementDirection != Vector3.zero) {
 			m_MovementDirection.Normalize();
 		}
@@ -60,5 +70,9 @@ public class CharacterMovementModel : MonoBehaviour {
 		}*/
 
 		return m_MovementDirection != Vector3.zero;
+	}
+
+	public void setIsFrozen(bool frozen){
+		m_frozen = frozen;
 	}
 }
