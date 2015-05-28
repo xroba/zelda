@@ -8,6 +8,7 @@ public class CharacterMovementModel : MonoBehaviour {
 	public Vector3 m_MovementFacing;
 	public Rigidbody2D m_Rb2d;
 	private bool m_frozen;
+	private bool m_IsAttacking;
 
 	void Awake()
 	{
@@ -74,5 +75,28 @@ public class CharacterMovementModel : MonoBehaviour {
 
 	public void setIsFrozen(bool frozen){
 		m_frozen = frozen;
+	}
+
+	public bool canAttack(){
+		if (m_IsAttacking == true) {
+			return false;
+		} 
+			
+		return true;
+
+	}
+
+	public void doAttack(){
+		Debug.Log ("yes do attack");
+	}
+
+	public void onAttackStarted(){
+		Debug.Log ("OnAttackStarted");
+		m_IsAttacking = true;
+	}
+
+	public void onAttackEnded(){
+		Debug.Log ("OnAttackEnded");
+		m_IsAttacking = false;
 	}
 }

@@ -20,7 +20,7 @@ public class CharacterMovementView : MonoBehaviour {
 		UpdateDirection ();
 	}
 
-	public void UpdateDirection(){
+	public void UpdateDirection(){ //updateMovement animation in fact
 
 		if (m_characterMovementModel == null) {
 			return;
@@ -34,5 +34,10 @@ public class CharacterMovementView : MonoBehaviour {
 		}
 		
 		animator.SetBool ("isMoving", m_characterMovementModel.IsMoving());
+	}
+
+	//call from the modelMouvement
+	public void doAttack(){
+		animator.SetTrigger ("doAttack");
 	}
 }

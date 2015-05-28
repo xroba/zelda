@@ -6,6 +6,7 @@ public class CharacterBaseController : MonoBehaviour {
 	CharacterMovementModel m_MovementModel;
 	CharacterMovementView m_MovementView;
 	CharacterInteractionModel m_InteractionModel;
+
 	
 	void Awake()
 	{
@@ -29,9 +30,22 @@ public class CharacterBaseController : MonoBehaviour {
 		if (m_InteractionModel == null) {
 			return;
 		}
-		Debug.Log ("space");
 		m_InteractionModel.onInterract ();
 
+	}
+
+	protected void onAttackPressed(){
+
+		if (m_MovementModel == null) {
+			return;
+		}
+
+		if (m_MovementModel.canAttack() == false) {
+			return;
+		}
+
+		m_MovementModel.doAttack ();
+		m_MovementView.doAttack ();
 	}
 
 	// Use this for initialization
