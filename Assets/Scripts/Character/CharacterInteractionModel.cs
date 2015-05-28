@@ -56,7 +56,7 @@ public class CharacterInteractionModel : MonoBehaviour {
 					myAngle = angleToInteract;
 					myInteractable = colliderInteractable;
 				}
-				Debug.Log(myInteractable.gameObject.name + " : " + myAngle);
+				//Debug.Log(myInteractable.gameObject.name + " : " + myAngle);
 			}
 
 

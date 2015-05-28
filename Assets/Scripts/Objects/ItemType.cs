@@ -1,6 +1,7 @@
-﻿enum ItemType{
-	Sword = 0,
-	Shield = 100,
-	SmallKey = 200,
-	BigKey = 300,
+﻿public enum ItemType{
+	None = 0,
+	Sword = 100,
+	Shield = 200,
+	SmallKey = 300,
+	BigKey = 400,
 }
