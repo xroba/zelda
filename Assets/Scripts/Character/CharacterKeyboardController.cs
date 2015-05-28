@@ -12,6 +12,7 @@ public class CharacterKeyboardController : CharacterBaseController {
 	void Update () {
 		UpdateDirection ();
 		UpdateAction ();
+		UpdateAttack ();
 	}
 
 	public void UpdateDirection()
@@ -43,9 +44,14 @@ public class CharacterKeyboardController : CharacterBaseController {
 
 	public void UpdateAction(){
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.E)) {
 			onActionPressed();
 		}
+	}
 
+	public void UpdateAttack(){
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			onAttackPressed ();
+		}
 	}
 }
