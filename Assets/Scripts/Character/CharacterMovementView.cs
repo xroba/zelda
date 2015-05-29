@@ -53,7 +53,6 @@ public class CharacterMovementView : MonoBehaviour {
 
 	void setWeaponActive(bool doActive){
 		for (int i=0; i < weaponParent.childCount; i++) {
-			Debug.Log (weaponParent.GetChild(i).gameObject.name + "--" + doActive);
 			weaponParent.GetChild(i).gameObject.SetActive(doActive);
 		}
 

@@ -9,10 +9,16 @@ public class CharacterMovementModel : MonoBehaviour {
 	public Rigidbody2D m_Rb2d;
 	private bool m_frozen;
 	public bool m_IsAttacking;
+	public ItemType m_equippedWeapon;
+
+	public Transform weaponParent;
+	public GameObject swordPrefab;
+
 
 	void Awake()
 	{
 		m_Rb2d = GetComponent<Rigidbody2D> ();
+		m_equippedWeapon = ItemType.None;
 	}
 
 	// Use this for initialization
@@ -32,6 +38,7 @@ public class CharacterMovementModel : MonoBehaviour {
 
 	public void SetDirection(Vector2 Direction)
 	{
+
 		if( m_frozen == true){
 			return;
 		}
@@ -52,7 +59,7 @@ public class CharacterMovementModel : MonoBehaviour {
 
 	public void UpdateMovement(){
 
-		if (m_frozen == true) {
+		if (m_frozen == true || m_IsAttacking == true) {
 			m_Rb2d.velocity = Vector3.zero;
 			return;
 
@@ -81,13 +88,29 @@ public class CharacterMovementModel : MonoBehaviour {
 		if (m_IsAttacking == true) {
 			return false;
 		} 
-			
+
+		if (m_equippedWeapon == ItemType.None) {
+			return false;
+		}
+
+
 		return true;
 
 	}
 
+	public void EquipWeapon( ItemType itemType){
+		m_equippedWeapon = itemType;
+
+
+		//Instantiate(swordPrefab, weaponParent.position, Quaternion.identity);
+		GameObject newSword = Instantiate<GameObject> (swordPrefab);
+		newSword.transform.parent = weaponParent;
+		newSword.transform.localPosition = Vector2.zero;
+		newSword.transform.rotation = Quaternion.identity;
+	}
+
 	public void doAttack(){
-		Debug.Log ("yes do attack");
+		//Debug.Log ("yes do attack");
 	}
 
 	public void onAttackStarted(){
