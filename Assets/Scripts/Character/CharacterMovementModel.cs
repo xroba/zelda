@@ -8,7 +8,7 @@ public class CharacterMovementModel : MonoBehaviour {
 	public Vector3 m_MovementFacing;
 	public Rigidbody2D m_Rb2d;
 	private bool m_frozen;
-	private bool m_IsAttacking;
+	public bool m_IsAttacking;
 
 	void Awake()
 	{
@@ -27,7 +27,7 @@ public class CharacterMovementModel : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		UpdateDirection ();
+		UpdateMovement ();
 	}
 
 	public void SetDirection(Vector2 Direction)
@@ -50,7 +50,7 @@ public class CharacterMovementModel : MonoBehaviour {
 		return m_MovementFacing;
 	}
 
-	public void UpdateDirection(){
+	public void UpdateMovement(){
 
 		if (m_frozen == true) {
 			m_Rb2d.velocity = Vector3.zero;
@@ -91,12 +91,10 @@ public class CharacterMovementModel : MonoBehaviour {
 	}
 
 	public void onAttackStarted(){
-		Debug.Log ("OnAttackStarted");
 		m_IsAttacking = true;
 	}
 
 	public void onAttackEnded(){
-		Debug.Log ("OnAttackEnded");
 		m_IsAttacking = false;
 	}
 }

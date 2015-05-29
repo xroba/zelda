@@ -5,6 +5,7 @@ public class CharacterMovementView : MonoBehaviour {
 
 	public Animator animator;
 	CharacterMovementModel m_characterMovementModel;
+	public Transform weaponParent;
 
 	void Awake() {
 		m_characterMovementModel = GetComponent<CharacterMovementModel> ();
@@ -18,6 +19,7 @@ public class CharacterMovementView : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		UpdateDirection ();
+		CheckIfAttack ();
 	}
 
 	public void UpdateDirection(){ //updateMovement animation in fact
@@ -40,4 +42,21 @@ public class CharacterMovementView : MonoBehaviour {
 	public void doAttack(){
 		animator.SetTrigger ("doAttack");
 	}
+
+	void CheckIfAttack(){
+		if (m_characterMovementModel.m_IsAttacking) {
+			setWeaponActive(true);
+		} else {
+			setWeaponActive(false);
+		}
+	}
+
+	void setWeaponActive(bool doActive){
+		for (int i=0; i < weaponParent.childCount; i++) {
+			Debug.Log (weaponParent.GetChild(i).gameObject.name + "--" + doActive);
+			weaponParent.GetChild(i).gameObject.SetActive(doActive);
+		}
+
+	}
+	
 }
