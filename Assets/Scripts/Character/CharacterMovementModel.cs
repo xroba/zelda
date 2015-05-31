@@ -12,7 +12,8 @@ public class CharacterMovementModel : MonoBehaviour {
 	public ItemType m_equippedWeapon;
 
 	public Transform weaponParent;
-	public GameObject swordPrefab;
+    public bool isPickingUpOneHand;
+    public bool isPickingUpTwoHand;
 
 
 	void Awake()
@@ -101,12 +102,30 @@ public class CharacterMovementModel : MonoBehaviour {
 	public void EquipWeapon( ItemType itemType){
 		m_equippedWeapon = itemType;
 
+        DataItem m_DataItem = Database.item.FindItem(itemType);
 
+        if (m_DataItem == null)
+        {
+            return;
+        }
+
+        if (m_DataItem.isEquipable == false)
+        {
+            return;
+        }
+
+
+
+        GameObject swordPrefab = m_DataItem.Prefabs;
 		//Instantiate(swordPrefab, weaponParent.position, Quaternion.identity);
 		GameObject newSword = Instantiate<GameObject> (swordPrefab);
 		newSword.transform.parent = weaponParent;
 		newSword.transform.localPosition = Vector2.zero;
 		newSword.transform.rotation = Quaternion.identity;
+
+        //sword
+        //isPickingUpOneHand = true;
+
 	}
 
 	public void doAttack(){
@@ -115,9 +134,12 @@ public class CharacterMovementModel : MonoBehaviour {
 
 	public void onAttackStarted(){
 		m_IsAttacking = true;
+
 	}
 
 	public void onAttackEnded(){
 		m_IsAttacking = false;
 	}
+
+
 }

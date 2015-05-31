@@ -2,9 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Character\CharacterMovementView.cs">
     <Files>
-      <File FileName="Assets\Scripts\Character\CharacterMovementModel.cs" Line="97" Column="30" />
-      <File FileName="Assets\Scripts\Character\CharacterMovementView.cs" Line="56" Column="75" />
-      <File FileName="Assets\Scripts\Character\CharacterBaseController.cs" Line="63" Column="1" />
+      <File FileName="Assets\Scripts\Character\CharacterMovementView.cs" Line="12" Column="40" />
+      <File FileName="Assets\Scripts\Database\DatabaseItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Character\CharacterInventoryModel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\Weapon\WeaponCollider.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Character\CharacterMovementModel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Character\CharacterBaseController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\Attackable\AttackableBush.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Objects\Interactable\InteractableChest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\editorDatabaseItems.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

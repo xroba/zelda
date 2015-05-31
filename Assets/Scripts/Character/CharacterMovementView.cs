@@ -9,6 +9,7 @@ public class CharacterMovementView : MonoBehaviour {
 
 	void Awake() {
 		m_characterMovementModel = GetComponent<CharacterMovementModel> ();
+		animator = GetComponent<Animator> ();
 	}
 
 	// Use this for initialization
@@ -19,8 +20,11 @@ public class CharacterMovementView : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		UpdateDirection ();
-		CheckIfAttack ();
+		//CheckIfAttack ();
+        //EquipWeapon ();
 	}
+
+   
 
 	public void UpdateDirection(){ //updateMovement animation in fact
 
@@ -51,11 +55,33 @@ public class CharacterMovementView : MonoBehaviour {
 		}
 	}
 
+    /*
+    public void ShowWeapon()
+    {
+        //Debug.Log("showWeapon");
+        setWeaponActive(true);
+    }
+
+    public void HideWeapon()
+    {
+        //Debug.Log("HideWeapon");
+        setWeaponActive(false);
+    }
+    */
+
 	void setWeaponActive(bool doActive){
 		for (int i=0; i < weaponParent.childCount; i++) {
 			weaponParent.GetChild(i).gameObject.SetActive(doActive);
 		}
 
 	}
-	
+
+ /*   private void EquipWeapon()
+    {
+        if (m_characterMovementModel.isPickingUpOneHand)
+        {
+            animator.SetBool("isPickupOneHande", true);
+        }
+    }
+*/	
 }

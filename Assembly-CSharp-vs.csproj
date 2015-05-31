@@ -53,6 +53,8 @@
      <Compile Include="Assets\Scripts\Character\CharacterKeyboardController.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterMovementModel.cs" />
      <Compile Include="Assets\Scripts\Character\CharacterMovementView.cs" />
+     <Compile Include="Assets\Scripts\Database\Database.cs" />
+     <Compile Include="Assets\Scripts\Database\DatabaseItem.cs" />
      <Compile Include="Assets\Scripts\Interface\DialogBox.cs" />
      <Compile Include="Assets\Scripts\Objects\Attackable\AttackableBase.cs" />
      <Compile Include="Assets\Scripts\Objects\Attackable\AttackableBush.cs" />
