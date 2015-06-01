@@ -9,22 +9,12 @@ public class InteractableSign : InteractableBase {
 	public override void onInteract(Character character){
 
 		if (DialogBox.isVisible()) {
-			Time.timeScale = 1;
-			character.Movement.setIsFrozen(false);
+			character.Movement.setIsFrozen(false, false);
 			DialogBox.Hide ();
 		} else {
-
-
-
-			character.Movement.setIsFrozen(true);
-			StartCoroutine(FreezeTimeRoutine()) ;
-
+			character.Movement.setIsFrozen(true, true);
 			DialogBox.Show (m_text);
 		}
 	}
 
-	IEnumerator FreezeTimeRoutine(){
-		yield return null;
-		Time.timeScale = 0;
-	}
 }

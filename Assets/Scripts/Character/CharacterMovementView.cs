@@ -20,8 +20,8 @@ public class CharacterMovementView : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		UpdateDirection ();
-		//CheckIfAttack ();
-        //EquipWeapon ();
+		CheckIfAttack ();
+        UpdateEquipWeapon ();
 	}
 
    
@@ -55,7 +55,7 @@ public class CharacterMovementView : MonoBehaviour {
 		}
 	}
 
-    /*
+    
     public void ShowWeapon()
     {
         //Debug.Log("showWeapon");
@@ -67,21 +67,52 @@ public class CharacterMovementView : MonoBehaviour {
         //Debug.Log("HideWeapon");
         setWeaponActive(false);
     }
-    */
+    
 
 	void setWeaponActive(bool doActive){
+
+
+        if (weaponParent == null)
+        {
+            return;
+        }
+
 		for (int i=0; i < weaponParent.childCount; i++) {
 			weaponParent.GetChild(i).gameObject.SetActive(doActive);
 		}
 
 	}
 
- /*   private void EquipWeapon()
+    private void UpdateEquipWeapon()
     {
-        if (m_characterMovementModel.isPickingUpOneHand)
+        bool isPickupOneHanded = false;
+        bool isPickupTwoHanded = false;
+
+        ItemType PickupItem = m_characterMovementModel.getItemBeenPicked();
+
+        if (PickupItem != ItemType.None && m_characterMovementModel.isFrozen() == true)
         {
-            animator.SetBool("isPickupOneHande", true);
+ 
+            DataItem itemData = Database.item.FindItem(m_characterMovementModel.getItemBeenPicked());
+
+            switch (itemData.animation)
+            {
+                case DataItem.PickupAnimation.OneHand:
+                    isPickupOneHanded = true;
+                    break;
+
+                case DataItem.PickupAnimation.TwoHand:
+                    isPickupTwoHanded = true;
+                    break;
+            }
+
         }
+
+        animator.SetBool("isPickupOneHand", isPickupOneHanded);
+        animator.SetBool("isPickupTwoHand", isPickupTwoHanded);
+          
+          
+         
     }
-*/	
+
 }

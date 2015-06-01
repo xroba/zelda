@@ -25,9 +25,13 @@ public class CharacterInventoryModel : MonoBehaviour {
         if (amount > 0)
         {
             DataItem m_data = Database.item.FindItem(itemType);
-            if (m_data != null && m_data.isEquipable == true)
+            if (m_data != null )
             {
-                m_MovementModel.EquipWeapon(itemType);
+                if(m_data.animation != DataItem.PickupAnimation.None)
+                    m_MovementModel.ShowEquipItem(itemType);
+
+                if(m_data.isEquipable == DataItem.equipable.SwordHand)
+                    m_MovementModel.EquipWeapon(itemType);
             }
 
         }
@@ -35,6 +39,6 @@ public class CharacterInventoryModel : MonoBehaviour {
 
 
 
-
+   
 
 }

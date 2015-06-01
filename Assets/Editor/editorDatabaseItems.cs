@@ -9,8 +9,8 @@ public class editorDatabaseItems  {
 	public static void CreateDatabaseAsset(){
 
 		ItemDatabase databaseAsset = ScriptableObject.CreateInstance<ItemDatabase> ();
-        AssetDatabase.CreateAsset(databaseAsset, "Assets/Resources/Databases/dataofitem.asset");
-		AssetDatabase.SaveAssets ();
+        AssetDatabase.CreateAsset(databaseAsset, "Assets/Resources/Databases/ItemDatabase.asset");
+		AssetDatabase.Refresh ();
 
 	}
 

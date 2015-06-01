@@ -10,8 +10,8 @@ public class Database  {
 
             if (m_databaseItem == null)
             {
-                m_databaseItem = Resources.Load<ItemDatabase>("Databases/dataofitem");
-                Debug.Log(m_databaseItem);
+                m_databaseItem = Resources.Load<ItemDatabase>("Databases/ItemDatabase");
+                //Debug.Log(m_databaseItem);
             }
             return m_databaseItem;
         }
