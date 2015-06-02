@@ -2,14 +2,15 @@
 using System.Collections;
 
 public class WeaponCollider : MonoBehaviour {
+	public ItemType type;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnTriggerEnter2D(Collider2D other) {
+
+		AttackableBase attackable = other.gameObject.GetComponent<AttackableBase> ();
+
+		if(attackable == null){
+			return;
+		}
+		other.gameObject.GetComponent<AttackableBase> ().onHit (type);
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class AttackableBush : AttackableBase {
 
+	public GameObject DestroyedEffect;
 	public Sprite DestroyedSprite;
 	private SpriteRenderer m_Renderer;
 
@@ -18,5 +19,9 @@ public class AttackableBush : AttackableBase {
 			GetComponent<Collider2D>().enabled = false;
 		}
 
+		if (DestroyedEffect != null) {
+			GameObject destroyedEffect = (GameObject) Instantiate(DestroyedEffect);
+			destroyedEffect.transform.position = transform.position;
+		}
 	}
 }

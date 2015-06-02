@@ -9,6 +9,7 @@ public class CharacterMovementView : MonoBehaviour {
 
 	void Awake() {
 		m_characterMovementModel = GetComponent<CharacterMovementModel> ();
+		animator = GetComponent<Animator> ();
 	}
 
 	// Use this for initialization
@@ -20,7 +21,10 @@ public class CharacterMovementView : MonoBehaviour {
 	void Update () {
 		UpdateDirection ();
 		CheckIfAttack ();
+        UpdateEquipWeapon ();
 	}
+
+   
 
 	public void UpdateDirection(){ //updateMovement animation in fact
 
@@ -51,12 +55,64 @@ public class CharacterMovementView : MonoBehaviour {
 		}
 	}
 
+    
+    public void ShowWeapon()
+    {
+        //Debug.Log("showWeapon");
+        setWeaponActive(true);
+    }
+
+    public void HideWeapon()
+    {
+        //Debug.Log("HideWeapon");
+        setWeaponActive(false);
+    }
+    
+
 	void setWeaponActive(bool doActive){
+
+
+        if (weaponParent == null)
+        {
+            return;
+        }
+
 		for (int i=0; i < weaponParent.childCount; i++) {
-			Debug.Log (weaponParent.GetChild(i).gameObject.name + "--" + doActive);
 			weaponParent.GetChild(i).gameObject.SetActive(doActive);
 		}
 
 	}
-	
+
+    private void UpdateEquipWeapon()
+    {
+        bool isPickupOneHanded = false;
+        bool isPickupTwoHanded = false;
+
+        ItemType PickupItem = m_characterMovementModel.getItemBeenPicked();
+
+        if (PickupItem != ItemType.None && m_characterMovementModel.isFrozen() == true)
+        {
+ 
+            DataItem itemData = Database.item.FindItem(m_characterMovementModel.getItemBeenPicked());
+
+            switch (itemData.animation)
+            {
+                case DataItem.PickupAnimation.OneHand:
+                    isPickupOneHanded = true;
+                    break;
+
+                case DataItem.PickupAnimation.TwoHand:
+                    isPickupTwoHanded = true;
+                    break;
+            }
+
+        }
+
+        animator.SetBool("isPickupOneHand", isPickupOneHanded);
+        animator.SetBool("isPickupTwoHand", isPickupTwoHanded);
+          
+          
+         
+    }
+
 }

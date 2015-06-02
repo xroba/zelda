@@ -23,5 +23,6 @@ public class InteractableChest : InteractableBase {
 		m_isOpen = true;
 
 		character.Inventory.AddItem(itemType, amount);
+        
 	}
 }
