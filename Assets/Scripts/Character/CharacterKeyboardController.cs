@@ -6,6 +6,8 @@ public class CharacterKeyboardController : CharacterBaseController {
 
 	// Use this for initialization
 	void Start () {
+
+        SetDirection(new Vector2(0, -1));
 	}
 	
 	// Update is called once per frame

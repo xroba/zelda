@@ -10,6 +10,10 @@ public class CharacterMovementView : MonoBehaviour {
 	void Awake() {
 		m_characterMovementModel = GetComponent<CharacterMovementModel> ();
 		animator = GetComponent<Animator> ();
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
 	}
 
 	// Use this for initialization

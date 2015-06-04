@@ -55,6 +55,9 @@
      <Compile Include="Assets\Scripts\Character\CharacterMovementView.cs" />
      <Compile Include="Assets\Scripts\Database\Database.cs" />
      <Compile Include="Assets\Scripts\Database\ItemDatabase.cs" />
+     <Compile Include="Assets\Scripts\Enemies\CollisionEnemy.cs" />
+     <Compile Include="Assets\Scripts\Enemies\characterBatController.cs" />
+     <Compile Include="Assets\Scripts\Enemies\triggerBatProximity.cs" />
      <Compile Include="Assets\Scripts\Interface\DialogBox.cs" />
      <Compile Include="Assets\Scripts\Objects\Attackable\AttackableBase.cs" />
      <Compile Include="Assets\Scripts\Objects\Attackable\AttackableBush.cs" />

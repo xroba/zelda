@@ -23,13 +23,19 @@ public class CharacterMovementModel : MonoBehaviour {
 	void Awake()
 	{
 		m_Rb2d = GetComponent<Rigidbody2D> ();
-		m_equippedWeapon = ItemType.None;
+		
+        //code due to the fact that the visual is on the character
+        if (m_Rb2d == null)
+        {
+            m_Rb2d = GetComponentInChildren<Rigidbody2D>();
+        }
+        m_equippedWeapon = ItemType.None;
         m_ItemBeenPicked = ItemType.None;
 	}
 
 	// Use this for initialization
 	void Start () {
-		SetDirection (new Vector2(0,-1));
+		
 	}
 
 	// Update is called once per frame
