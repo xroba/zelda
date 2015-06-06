@@ -26,9 +26,13 @@ public class CharacterMovementView : MonoBehaviour {
 		UpdateDirection ();
 		CheckIfAttack ();
         UpdateEquipWeapon ();
+        updateHit();
 	}
 
-   
+    public void updateHit()
+    {
+            animator.SetBool("isHit", m_characterMovementModel.isBeingPushed());
+    }
 
 	public void UpdateDirection(){ //updateMovement animation in fact
 

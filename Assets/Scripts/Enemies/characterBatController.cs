@@ -5,14 +5,19 @@ public class characterBatController : CharacterBaseController {
 
     GameObject characterInRange;
 
-   public void setCharacterInRange(GameObject character)
-    {
-        characterInRange = character;
-    }
+    public float strenghtPush;
+    public float timePushed;
+
+
 
     void Update()
     {
         UpdateMovement();
+    }
+
+    public void setCharacterInRange(GameObject character)
+    {
+        characterInRange = character;
     }
 
     void UpdateMovement()
@@ -26,9 +31,16 @@ public class characterBatController : CharacterBaseController {
                 directionToFlee = (characterInRange.transform.position - transform.position).normalized;
             }
         }
-
         SetDirection(directionToFlee);
 
     }
 
+    public void onHitCharacter(GameObject character)
+    {
+        characterInRange = null;
+        CharacterMovementModel m_characterMovement = character.GetComponent<CharacterMovementModel>();
+        Vector2 directionToPush = (character.transform.position - transform.position).normalized;
+        m_characterMovement.pushCharacter(directionToPush * strenghtPush, timePushed);
+       
+    }
 }
