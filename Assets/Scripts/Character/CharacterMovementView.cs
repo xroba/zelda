@@ -10,6 +10,10 @@ public class CharacterMovementView : MonoBehaviour {
 	void Awake() {
 		m_characterMovementModel = GetComponent<CharacterMovementModel> ();
 		animator = GetComponent<Animator> ();
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
 	}
 
 	// Use this for initialization
@@ -22,9 +26,13 @@ public class CharacterMovementView : MonoBehaviour {
 		UpdateDirection ();
 		CheckIfAttack ();
         UpdateEquipWeapon ();
+        updateHit();
 	}
 
-   
+    public void updateHit()
+    {
+            animator.SetBool("isHit", m_characterMovementModel.isBeingPushed());
+    }
 
 	public void UpdateDirection(){ //updateMovement animation in fact
 

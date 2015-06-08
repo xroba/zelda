@@ -6,7 +6,7 @@ public class CharacterMovementModel : MonoBehaviour {
 	public float speed = 5 ;
 	public Vector3 m_MovementDirection;
 	public Vector3 m_MovementFacing;
-	public Rigidbody2D m_Rb2d;
+	private Rigidbody2D m_Rb2d;
 	private bool m_frozen;
     private GameObject m_DisplayItemPickup;
 	public bool m_IsAttacking;
@@ -18,23 +18,30 @@ public class CharacterMovementModel : MonoBehaviour {
     private ItemType m_ItemBeenPicked;
     private bool isPickingUpOneHand;
     private bool isPickingUpTwoHand;
-
+    private Vector2 m_pushDirection;
+    private float m_timePushed;
 
 	void Awake()
 	{
 		m_Rb2d = GetComponent<Rigidbody2D> ();
-		m_equippedWeapon = ItemType.None;
+		
+        //code due to the fact that the visual is on the character
+        if (m_Rb2d == null)
+        {
+            m_Rb2d = GetComponentInChildren<Rigidbody2D>();
+        }
+        m_equippedWeapon = ItemType.None;
         m_ItemBeenPicked = ItemType.None;
 	}
 
 	// Use this for initialization
 	void Start () {
-		SetDirection (new Vector2(0,-1));
+		
 	}
 
 	// Update is called once per frame
 	void Update () {
-	
+        calculatePushTime();
 	}
 
 	void FixedUpdate()
@@ -47,22 +54,41 @@ public class CharacterMovementModel : MonoBehaviour {
        
         if (Direction != Vector2.zero && m_ItemBeenPicked != ItemType.None)
         {
-
             setIsFrozen(false, true);
             m_ItemBeenPicked = ItemType.None;
             Destroy(m_DisplayItemPickup);
-            
         }
 
 		if( m_frozen == true){
 			return;
 		}
+
+        if (isBeingPushed() == true)
+        {
+            m_MovementDirection = m_pushDirection ;
+        }
+
 		m_MovementDirection = new Vector3 (Direction.x, Direction.y, 0);
 
 		if (Direction != Vector2.zero) {
 			m_MovementFacing = m_MovementDirection;
 		}
 	}
+
+    public void calculatePushTime(){
+        m_timePushed =  Mathf.MoveTowards(m_timePushed, 0f, Time.deltaTime);
+    }
+
+    public void pushCharacter(Vector2 pushDirection, float timePushed)
+    {
+           m_pushDirection = pushDirection;
+           m_timePushed = timePushed;
+    }
+
+    public bool isBeingPushed()
+    {
+        return m_timePushed > 0;
+    }
 
 	public Vector3 getDirection(){
 		return m_MovementDirection;
@@ -82,7 +108,17 @@ public class CharacterMovementModel : MonoBehaviour {
 		if (m_MovementDirection != Vector3.zero) {
 			m_MovementDirection.Normalize();
 		}
-			m_Rb2d.velocity = m_MovementDirection * speed;
+
+        if (isBeingPushed())
+        {
+            m_Rb2d.velocity = m_pushDirection;
+        }
+        else
+        {
+            m_Rb2d.velocity = m_MovementDirection * speed;
+        }
+
+			
 	}
 
 	public bool IsMoving(){
